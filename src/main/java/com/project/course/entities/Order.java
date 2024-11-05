@@ -1,6 +1,7 @@
 package com.project.course.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.course.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 
@@ -23,11 +24,13 @@ public class Order implements Serializable {
 
     private Integer orderStatus;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
 
-    public Order() {}
+    public Order() {
+    }
 
     public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
         this.id = id;
